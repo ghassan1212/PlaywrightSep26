@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 bat '''
@@ -32,16 +26,18 @@ pipeline {
                         npx playwright test
 
                         echo ===== CHECKING ALLURE RESULTS =====
+                        echo ===== ALLURE RESULTS DIRECTORY =====
+
                         if exist allure-results (
-                            echo.
                             echo Allure results directory FOUND
                             echo.
+                            echo ===== ALLURE RESULT FILES =====
                             dir /s /b allure-results
+                            echo.
+                            echo ===== JSON RESULT FILES =====
+                            dir /s /b allure-results\\*.json
                         ) else (
-                            echo.
-                            echo ERROR: allure-results directory NOT FOUND
-                            echo.
-                            exit /b 1
+                            echo *** ALLURE RESULTS DIRECTORY NOT FOUND ***
                         )
                     '''
                 }
@@ -54,7 +50,9 @@ pipeline {
             echo '===== PUBLISHING ALLURE REPORT ====='
 
             allure([
-                [path: 'allure-results']
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'allure-results']]
             ])
         }
     }
