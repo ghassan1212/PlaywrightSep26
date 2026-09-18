@@ -1,0 +1,17 @@
+{
+  "name": "play_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/browser-webkit": "^1.63.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.5.0",
+    "allure-playwright": "^3.12.1"
+  }
+}
