@@ -12,7 +12,8 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
 reporter: [
-  ['allure-playwright']
+    ['html'],
+    ['allure-playwright']
 ],
   
 
