@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat '''
+                    echo ===== INSTALLING DEPENDENCIES =====
+                    npm install
+                '''
+            }
+        }
+
+        stage('Run Playwright Tests') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    bat '''
+                        echo ===== CLEANING ALLURE RESULTS =====
+                        if exist allure-results rmdir /s /q allure-results
+
+                        echo ===== RUNNING PLAYWRIGHT =====
+                        npx playwright test
+
+                        echo ===== CHECKING ALLURE RESULTS =====
+                        if exist allure-results (
+                            echo Allure results FOUND
+                            dir /s /b allure-results
+                        ) else (
+                            echo ERROR: allure-results NOT FOUND
+                            exit /b 1
+                        )
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo '===== PUBLISHING ALLURE REPORT ====='
+
+            allure([
+                [path: 'allure-results']
+            ])
+        }
+    }
+}
