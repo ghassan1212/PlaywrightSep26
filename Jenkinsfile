@@ -12,6 +12,9 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 bat '''
+                    echo ===== CURRENT DIRECTORY =====
+                    cd
+
                     echo ===== INSTALLING DEPENDENCIES =====
                     npm install
                 '''
@@ -22,18 +25,22 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     bat '''
-                        echo ===== CLEANING ALLURE RESULTS =====
+                        echo ===== CLEANING OLD ALLURE RESULTS =====
                         if exist allure-results rmdir /s /q allure-results
 
-                        echo ===== RUNNING PLAYWRIGHT =====
+                        echo ===== RUNNING PLAYWRIGHT TESTS =====
                         npx playwright test
 
                         echo ===== CHECKING ALLURE RESULTS =====
                         if exist allure-results (
-                            echo Allure results FOUND
+                            echo.
+                            echo Allure results directory FOUND
+                            echo.
                             dir /s /b allure-results
                         ) else (
-                            echo ERROR: allure-results NOT FOUND
+                            echo.
+                            echo ERROR: allure-results directory NOT FOUND
+                            echo.
                             exit /b 1
                         )
                     '''
