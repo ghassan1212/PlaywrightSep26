@@ -1,0 +1,1 @@
+Prompt message: I am a JS prompt

@@ -1,0 +1,10 @@
+Tab 1 URL: https://www.google.com/
+Tab 2 URL: https://github.com/
+Working with Tab 1
+Search entered in Tab 1
+Working with Tab 2
+Number of open tabs: 2
+Tab 1 URL: https://www.google.com/
+Tab 2 URL: https://github.com/
+Tab 2 closed
+Remaining tabs: 1

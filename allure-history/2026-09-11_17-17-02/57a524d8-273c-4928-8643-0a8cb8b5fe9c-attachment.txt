@@ -1,0 +1,1 @@
+The type of Alert message: I am a JS Alert

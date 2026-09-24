@@ -1,0 +1,16 @@
+
+1 - Test started
+
+2 - Page loaded
+
+3 - Row found
+
+4 - Locators created
+
+5 - Assert the Name is correct
+This is the cell Name [1] Vega
+
+6 - Assert the Salary is correct
+This is cell Salary [4] 10000
+
+7 - Test passed

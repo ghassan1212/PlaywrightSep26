@@ -1,0 +1,23 @@
+
+Allure.docx
+Confg_File.docx
+Install Playwright and command lines.docx
+Install Playwright.docx
+Playwright command lines.docx
+Steps to Push to Sub.docx
+node_modules/
+allure-results/
+allure-report/
+playwright-report/
+test-results/
+videos/
+screenshots/
+*.zip
+*.log
+node_modules/
+ms-playwright/
+test-results/
+playwright-report/
+allure-results/
+allure-report/
+.env

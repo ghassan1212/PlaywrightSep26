@@ -1,0 +1,2 @@
+Test data prepared: { username: 'testuser', environment: 'QA' }
+Calculation result: 30
