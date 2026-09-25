@@ -1,1 +1,7 @@
-
+node_modules/
+ms-playwright/
+test-results/
+allure-history/
+allure-report/
+allure-results/
+.env
